@@ -1,0 +1,41 @@
+<h1>Alternativa</h1>
+
+<p>
+    <a href="<?=$this->url('alternative-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Type</th>
+        <th>Text</th>
+        <th>Acao</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getType()?></td>
+            <td><?=$entity->getText()?></td>
+            <td>
+                <a href="<?=$this->url('alternative-admin/default', array('controller' => 'alternatives', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('alternative-admin/default', array('controller' => 'alternatives', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'alternative-admin/paginator',
+        'options' => array(
+            'controller' => 'alternatives',
+            'action' => 'index',
+        ),
+    )
+)?>

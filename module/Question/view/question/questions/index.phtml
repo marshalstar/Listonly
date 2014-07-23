@@ -1,0 +1,39 @@
+<h1>Questionários</h1>
+
+<p>
+    <a href="<?=$this->url('question-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Texto</th>
+        <th>Acao</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getText()?></td>
+            <td>
+                <a href="<?=$this->url('question-admin/default', array('controller' => 'questions', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('question-admin/default', array('controller' => 'questions', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'question-admin/paginator',
+        'options' => array(
+            'controller' => 'questions',
+            'action' => 'index',
+        ),
+    )
+)?>

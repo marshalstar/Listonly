@@ -1,0 +1,43 @@
+<h1>Usuários</h1>
+
+<p>
+    <a href="<?=$this->url('user-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Login</th>
+        <th>Email</th>
+        <th>Acao</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getName()?></td>
+            <td><?=$entity->getLogin()?></td>
+            <td><?=$entity->getEmail()?></td>
+            <td>
+                <a href="<?=$this->url('user-admin/default', array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('user-admin/default', array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'user-admin/paginator',
+        'options' => array(
+            'controller' => 'users',
+            'action' => 'index',
+        ),
+    )
+)?>

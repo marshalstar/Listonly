@@ -1,0 +1,13 @@
+<h3>Editar Pergunta</h3>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('answer-admin/default', array('controller' => 'answers', 'action' => 'edit')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+
+?>

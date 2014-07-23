@@ -1,0 +1,43 @@
+<h1>Privileges</h1>
+
+<p>
+    <a href="<?=$this->url('acl-admin/default', array('controller' => 'privileges', 'action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Role</th>
+        <th>Nome</th>
+        <th>Resource</th>
+        <th>Ação</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getRole()->getNome()?></td>
+            <td><?=$entity->getNome()?></td>
+            <td><?=$entity->getResource()->getNome()?></td>
+            <td>
+                <a href="<?=$this->url('acl-admin/default', array('controller' => 'privileges', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('acl-admin/default', array('controller' => 'privileges', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'acl-admin/paginator',
+        'options' => array(
+            'controller' => 'privileges',
+            'action' => 'index',
+        ),
+    )
+)?>

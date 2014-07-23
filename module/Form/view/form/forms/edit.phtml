@@ -1,0 +1,13 @@
+<h3>Editar forms</h3>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('form-admin/default', array('controller' => 'forms', 'action' => 'edit')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+
+?>

@@ -1,0 +1,13 @@
+<h3>Editar Título</h3>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('title-admin/default', array('controller' => 'titles', 'action' => 'edit')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();
+
+?>

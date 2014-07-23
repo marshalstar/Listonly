@@ -1,0 +1,41 @@
+<h1>Avaliações</h1>
+
+<p>
+    <a href="<?=$this->url('evaluation-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Usuário</th>
+        <th>Formulario</th>
+        <th>Acao</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?php $entity->getUser() and print($entity->getUser()->getName());?></td>
+            <td><?php $entity->getForm() and print($entity->getForm()->getName());?></td>
+            <td>
+                <a href="<?=$this->url('evaluation-admin/default', array('controller' => 'evaluations', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('evaluation-admin/default', array('controller' => 'evaluations', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'evaluation-admin/paginator',
+        'options' => array(
+            'controller' => 'evaluations',
+            'action' => 'index',
+        ),
+    )
+)?>

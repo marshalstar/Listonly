@@ -1,0 +1,41 @@
+<h1>Formulários</h1>
+
+<p>
+    <a href="<?=$this->url('form-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Usuario</th>
+        <th>Acao</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getName()?></td>
+            <td><?php $entity->getUser() and print($entity->getUser()->getName())?></td>
+            <td>
+                <a href="<?=$this->url('form-admin/default', array('controller' => 'forms', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('form-admin/default', array('controller' => 'forms', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'form-admin/paginator',
+        'options' => array(
+            'controller' => 'forms',
+            'action' => 'index',
+        ),
+    )
+)?>

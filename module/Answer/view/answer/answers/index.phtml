@@ -1,0 +1,42 @@
+<h1>Perguntas</h1>
+
+<p>
+    <a href="<?=$this->url('answer-admin/default', array('action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Avaliação</th>
+        <th>Questão</th>
+        <th>Alternativa</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?php $entity->getEvaluation() and print($entity->getEvaluation()->getId())?></td>
+            <td><?php $entity->getQuestion() and print($entity->getQuestion()->getText())?></td>
+            <td><?php $entity->getAlternative() and print($entity->getAlternative()->getText())?></td>
+            <td>
+                <a href="<?=$this->url('answer-admin/default', array('controller' => 'answers', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('answer-admin/default', array('controller' => 'answers', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'answer-admin/paginator',
+        'options' => array(
+            'controller' => 'answers',
+            'action' => 'index',
+        ),
+    )
+)?>

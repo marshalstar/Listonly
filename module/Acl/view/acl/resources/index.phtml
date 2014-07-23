@@ -1,0 +1,39 @@
+<h1>Resources</h1>
+
+<p>
+    <a href="<?=$this->url('acl-admin/default', array('controller' => 'resources', 'action' => 'new'))?>">Novo</a>
+</p>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Ação</th>
+    </tr>
+
+    <?php foreach ($this->paginator as $entity): ?>
+        <tr>
+            <td><?=$entity->getId()?></td>
+            <td><?=$entity->getNome()?></td>
+            <td>
+                <a href="<?=$this->url('acl-admin/default', array('controller' => 'resources', 'action' => 'edit', 'id' => $entity->getId()))?>">Editar</a>
+                <a href="<?=$this->url('acl-admin/default', array('controller' => 'resources', 'action' => 'delete', 'id' => $entity->getId()))?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?=$this->paginationControl(
+    $this->data,
+    'Sliding',
+    'partials/paginator',
+    array(
+        'route' => 'acl-admin/paginator',
+        'options' => array(
+            'controller' => 'resources',
+            'action' => 'index',
+        ),
+    )
+)?>
