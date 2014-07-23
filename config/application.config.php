@@ -8,8 +8,6 @@ return array(
         //'Acl',
         'Base',
         //'User',
-        // gorges
-
 
         'Alternative',
         'Answer',

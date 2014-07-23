@@ -49,11 +49,34 @@ return array(
                     ),
                 ),
             ),
+            'user-auth' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/auth',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'User\Controller',
+                        'controller' => 'Auth',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'user-logout' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/auth/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'User\Controller',
+                        'controller' => 'Auth',
+                        'action' => 'logout',
+                    ),
+                ),
+            ),
         ),
     ),
     'controllers' => array(
         'invokables' => array(
             'User\Controller\Users' => 'User\Controller\UsersController',
+            'User\Controller\Auth' => 'User\Controller\AuthController',
         ),
     ),
     'view_manager' => array(
