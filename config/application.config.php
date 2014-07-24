@@ -8,7 +8,6 @@ return array(
         //'Acl',
         'Base',
         //'User',
-        // teste
 
         'Alternative',
         'Answer',
