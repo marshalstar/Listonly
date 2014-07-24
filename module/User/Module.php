@@ -39,6 +39,10 @@ class Module {
         $controller = $e->getTarget();
         $matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
 
+        \Kint::dump($auth);
+        \Kint::dump($matchedRoute);
+        die;
+
         if(!$auth->hasIdentity() and $matchedRoute != "user-auth") {
             return $controller->redirect()->toRoute('user-auth');
         }

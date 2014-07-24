@@ -75,3 +75,8 @@ project and you should be ready to go! It should look something like below:
             Allow from all
         </Directory>
     </VirtualHost>
+
+Import Fixture
+php vendor/doctrine/doctrine-module/bin/doctrine-module data-fixture:import
+php vendor/doctrine/doctrine-module/bin/doctrine-module data-fixture:import --purge-with-truncate
+@method User setTeste(string $teste)
